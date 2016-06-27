@@ -1,0 +1,54 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @item.title %>
+</p>
+
+<p>
+  <strong>Category:</strong>
+  <%= @item.category_id %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @item.description %>
+</p>
+
+<p>
+  <strong>Condition:</strong>
+  <%= @item.condition %>
+</p>
+
+<p>
+  <strong>Price:</strong>
+  <%= @item.price %>
+</p>
+
+<p>
+  <strong>Format:</strong>
+  <%= @item.format %>
+</p>
+
+<p>
+  <strong>Brand:</strong>
+  <%= @item.brand_id %>
+</p>
+
+<p>
+  <strong>Screen size:</strong>
+  <%= @item.screen_size %>
+</p>
+
+<p>
+  <strong>Color:</strong>
+  <%= @item.color %>
+</p>
+
+<p>
+  <strong>Memory:</strong>
+  <%= @item.memory %>
+</p>
+
+<%= link_to 'Edit', edit_item_path(@item) %> |
+<%= link_to 'Back', items_path %>

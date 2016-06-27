@@ -1,0 +1,57 @@
+<%= form_for(@item) do |f| %>
+  <% if @item.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@item.errors.count, "error") %> prohibited this item from being saved:</h2>
+
+      <ul>
+      <% @item.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="form-group">
+    <%= f.label :title %><br>
+    <%= f.text_field :title, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :category_id %><br>
+    <%= f.select :category_id, Item.category_ids.map { |name, _id| [name.titleize, name] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :description %><br>
+    <%= f.text_area :description, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :condition %><br>
+    <%= f.select :condition, Item.conditions.map { |name, _ids| [name.titleize, name] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :price %><br>
+    <%= f.text_field :price, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :format %><br>
+    <%= f.select :format, Item.formats.map { |name, _ids| [name.titleize, name] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :brand_id %><br>
+    <%= f.select :brand_id, Item.brand_ids.map { |name, _ids| [name.titleize, name] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :screen_size %><br>
+    <%= f.select :screen_size, Item::SCREEN_SIZES.map { |digit, name| [name, digit] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :color %><br>
+    <%= f.select :color, Item.colors.map { |name, _ids| [name.titleize, name] }, {}, class: "form-control" %>
+  </div>
+  <div class="form-group">
+    <%= f.label :memory %><br>
+    <%= f.select :memory, Item::MEMORY_SIZES.map { |digit, name| [name, digit] }, {}, class: "form-control" %>
+  </div>
+  <div class="actions">
+    <%= f.submit class: "btn btn-success" %>
+  </div>
+<% end %>
