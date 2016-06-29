@@ -19,7 +19,7 @@ screens = Item::SCREEN_SIZES.keys
                   screen_size: screens.sample,
                   memory: memories.sample,
                   color: color)
-  item.skip = true
+  item.skip_indexing = true
   item.save
   SolrService.add(item.to_solr)
   print '.' if a % 10_000 == 0
