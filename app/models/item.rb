@@ -10,7 +10,7 @@ class Item < ActiveRecord::Base
 
   attr_accessor :skip
 
-  after_commit :index_data_in_solr, on: [:create, :update]
+  after_commit :index_data_in_solr, on: [:create, :update], unless: :skip_indexing?
   before_destroy :remove_data_from_solr
 
   MEMORY_SIZES = 2.upto(8).each_with_object({}) { |item, hash| hash[item] = "#{item}GB" }
@@ -23,9 +23,12 @@ class Item < ActiveRecord::Base
       "screen_size" => "#{screen_size} inches", "color" => color.titleize, "memory" => "#{memory}GB", "id" => id
     }
   end
+  
+  def skip_indexing?
+    skip_indexing
+  end
 
   def index_data_in_solr
-    return if skip
     SolrService.add(to_solr)
     SolrService.commit
   end
